@@ -59,6 +59,55 @@ namespace Vaetech.Security.Application.RSA
             }
             return decryptResult;
         }
+        public string RSAEncrypt(string str, string publicKey)
+        {
+            //---Creates a new instance of RSACryptoServiceProvider---              
+            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
+            //---Loads the public key---  
+            RSA.FromXmlString(publicKey);
+            byte[] EncryptedStr = null;
+
+            //---Encrypts the string---  
+            EncryptedStr = RSA.Encrypt(ASCIIEncoding.ASCII.GetBytes(str), false);
+
+            //---Converts the encrypted byte array to string---              
+            StringBuilder s = new StringBuilder();
+            for (int i = 0; i <= EncryptedStr.Length - 1; i++)
+            {
+                //Console.WriteLine(EncryptedStr(i))  
+                if (i != EncryptedStr.Length - 1)
+                {
+                    s.Append(EncryptedStr[i] + " ");
+                }
+                else
+                {
+                    s.Append(EncryptedStr[i]);
+                }
+            }
+
+            return s.ToString();
+        }
+
+        public string RSADecrypt(string str, string privateKey)
+        {
+            //---Creates a new instance of RSACryptoServiceProvider---  
+            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
+            //---Loads the private key---  
+            RSA.FromXmlString(privateKey);
+
+            //---Decrypts the string---  
+            byte[] DecryptedStr = RSA.Decrypt(ASCIIEncoding.ASCII.GetBytes(str), false);
+            //---Converts the decrypted byte array to string---  
+            StringBuilder s = new StringBuilder();
+            
+            for (int i = 0; i <= DecryptedStr.Length - 1; i++)
+            {
+                //Console.WriteLine(DecryptedStr(i))  
+                s.Append(System.Convert.ToChar(DecryptedStr[i]));
+            }
+            //Console.WriteLine(s)  
+            return s.ToString();
+        }
         public static EncryptResult TryEncrypt(string plainText, RSAParameters rSAKeyInfo)
             => Try.Catch(() => Encrypt(plainText, rSAKeyInfo)).Item1;
         public static DecryptResult TryDecrypt(string cipherText, RSAParameters rSAKeyInfo)

@@ -18,27 +18,25 @@ namespace Vaetech.Security.Application.JWT
         }
         public void SetJWTkey(string value) => __JWTkey = value;
         public void SetJWTExpirationTime(double value) => __JWTExpirationTime = value;
-        public UserToken CreateToken(string uniqueName,string publicKey, string privateKey)
+        public UserToken CreateToken(string uniqueName, string publicKey)
         {   
             return CreateToken(new List<Claim>
             {
                 new Claim("PublicKey",publicKey),
-                new Claim(JwtRegisteredClaimNames.UniqueName, uniqueName),
-                new Claim("PrivateKey", privateKey)
+                new Claim(JwtRegisteredClaimNames.UniqueName, uniqueName)                
             });
         }
-        public UserToken CreateToken(Guid guidUser,string userName, string publicKey, string privateKey)
+        public UserToken CreateToken(Guid guidUser,string userName, string publicKey)
         {
             return CreateToken(new List<Claim>
             {
                 new Claim("PublicKey",publicKey),
                 new Claim("GuidUser", guidUser.ToString()),
-                new Claim(JwtRegisteredClaimNames.UniqueName, userName),
-                new Claim("PrivateKey", privateKey)
+                new Claim(JwtRegisteredClaimNames.UniqueName, userName)                
             });
         }        
 
-        public UserToken CreateToken(Guid guidUser, string userName, string fullName, string email, int groupAccessId, string publicKey, string privateKey)
+        public UserToken CreateToken(Guid guidUser, string userName, string fullName, string email, int groupAccessId, string publicKey)
         {
             return CreateToken(new List<Claim>
             {
@@ -47,8 +45,7 @@ namespace Vaetech.Security.Application.JWT
                 new Claim("FullName", fullName),
                 new Claim("Email", email),
                 new Claim("GroupAccessId", groupAccessId.ToString()),
-                new Claim(JwtRegisteredClaimNames.UniqueName, userName),
-                new Claim("PrivateKey", privateKey)
+                new Claim(JwtRegisteredClaimNames.UniqueName, userName)                
             });
         }
 
