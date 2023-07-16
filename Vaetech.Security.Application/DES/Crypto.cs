@@ -39,8 +39,8 @@ namespace Vaetech.Security.Application.DES
                     //Write all data to the stream.
                     swEncrypt.Write(plainText);
                 }
-                cryptoResult.EncryptedInBytes = msEncrypt.ToArray();
-                cryptoResult.Encrypted = Convert.ToBase64String(msEncrypt.GetBuffer(), 0, (int)msEncrypt.Length);
+                cryptoResult.EncodedInBytes = msEncrypt.ToArray();
+                cryptoResult.Encoded = Convert.ToBase64String(msEncrypt.GetBuffer(), 0, (int)msEncrypt.Length);
             }
             
             return cryptoResult;

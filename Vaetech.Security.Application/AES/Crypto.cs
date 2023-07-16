@@ -7,7 +7,7 @@ using Vaetech.Data.ContentResult;
 namespace Vaetech.Security.Application.AES
 {
     public class Crypto
-    {
+    {        
         public static EncryptResult Encrypt(string plainText, string password)
         {
             if (string.IsNullOrEmpty(password))
@@ -46,8 +46,8 @@ namespace Vaetech.Security.Application.AES
                         //Write all data to the stream.
                         swEncrypt.Write(plainText);
                     }
-                    cryptoResult.EncryptedInBytes = msEncrypt.ToArray();
-                    cryptoResult.Encrypted = Convert.ToBase64String(msEncrypt.GetBuffer(), 0, (int)msEncrypt.Length);
+                    cryptoResult.EncodedInBytes = msEncrypt.ToArray();
+                    cryptoResult.Encoded = Convert.ToBase64String(msEncrypt.GetBuffer(), 0, (int)msEncrypt.Length);
                 }
             }
                        

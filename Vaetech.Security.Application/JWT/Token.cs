@@ -46,7 +46,7 @@ namespace Vaetech.Security.Application.JWT
                 new Claim("Email", email),
                 new Claim("GroupAccessId", groupAccessId.ToString()),
                 new Claim(JwtRegisteredClaimNames.UniqueName, userName)                
-            });
+            });     
         }
 
         private UserToken CreateToken(IEnumerable<Claim> claims)

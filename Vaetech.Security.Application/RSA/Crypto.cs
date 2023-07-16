@@ -29,8 +29,8 @@ namespace Vaetech.Security.Application.RSA
                 RSA.ImportParameters(rSAKeyInfo);
 
                 //Encrypt the passed byte array and specify OAEP padding.                  
-                encryptResult.EncryptedInBytes = RSA.Encrypt(dataToEncrypt, false);
-                encryptResult.Encrypted = Convert.ToBase64String(encryptResult.EncryptedInBytes);
+                encryptResult.EncodedInBytes = RSA.Encrypt(dataToEncrypt, false);
+                encryptResult.Encoded = Convert.ToBase64String(encryptResult.EncodedInBytes);
             }
             return encryptResult;
         }
